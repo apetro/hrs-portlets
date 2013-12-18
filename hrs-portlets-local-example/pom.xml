@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- You're intended to be able to copy this pom.xml and its surrounding Maven module as a suitable starting
+    point for your local implementation of the HRS portlets suite.  Comments throughout this file offer hints on
+    changes you'd make in your copy. -->
+
+    <!-- this parent is probably just fine for your local implementation -->
+    <parent>
+        <artifactId>hrs-portlets-parent</artifactId>
+        <groupId>org.jasig.portlet.hrs</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--
+    In your copy you should change the group ID to something that namespaces to your project, like
+    edu.miskatonic.portlet.hrs
+    -->
+    <groupId>org.jasig.portlet.hrs</groupId>
+
+    <!-- You should definitely declare this to a version number that tracks the versioning of *your version* of this
+    portlet, rather than tracking the version of the abstract portlet on which you're depending.
+    -->
+    <!--<version>${project.version}</version>-->
+
+    <!-- In your copy you should definitely change this to something like
+        hrs-portlets-local-miskatonic-university
+        That is, something that communicates that what you're building is the artifact that is the portlet
+        application specifically for deployment in your portal.
+    -->
+    <artifactId>hrs-portlets-local-example</artifactId>
+
+    <dependencies>
+        <!-- overlays on the abstract webapp -->
+        <dependency>
+            <groupId>org.jasig.portlet.hrs</groupId>
+            <artifactId>hrs-portlets-webapp</artifactId>
+            <type>war</type>
+            <!-- WARNING when you declare your own versioning for your project,
+            you need to switch this to the version *of hrs-portlets-webapp* that you
+            want to overlay upon -->
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Here's where you add concrete implementations of the HRS API
+         | The trick is: you need to declare implementations such that each HRS API element is fulfilled
+         | exactly once.
+         | Zero times and the portlet won't work.
+         | More than once and it's painfully ambiguous which implementation the portlet ought to use.
+         -->
+
+        <!-- This adds the demo implementation.  This implementation is sufficient all by itself.
+         | IMPORTANT: if you add alternative implementations, you must remove this demo implementation, since it will
+         | be redundant with any other implementation you would add.
+         -->
+        <dependency>
+            <groupId>org.jasig.portlet.hrs</groupId>
+            <artifactId>hrs-portlets-demo-impl</artifactId>
+            <!-- WARNING when you declare your own versioning for your project,
+            you need to switch this to the version *of hrs-portlets-webapp* that you
+            want to overlay upon -->
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- Here's how you would declare the three (3) shipping concrete implementations that, collectively,
+         | fulfill each HRS API exactly once.  The University of Wisconsin-Madison, for instance, is using these
+         | three implementations in concert.  (That's why it's the case that they happen to add up in total to one
+         | complete implementation of the API.
+         | IMPORTANT: If you add these real implementations, you *must* remove the demo implementation declared above.
+         -->
+        <!--
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>hrs-portlets-ps-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>hrs-portlets-cypress-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>hrs-portlets-bnsemail-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        -->
+
+    </dependencies>
+</project>
