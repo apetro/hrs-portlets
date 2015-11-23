@@ -118,7 +118,7 @@
     </sec:authorize>
     <div id="${n}dl-leave-balance" class="dl-leave-balance ui-tabs-panel ui-widget-content ui-corner-bottom ${hiddenTabStyle}">
       <div class="balance-header">
-        <span>Leave balances are available on your current Earnings Statement in the Payroll Information module.</span>
+        <span>Leave balances are also available on your current Earnings Statement in the Payroll Information module.</span>
       </div>
       <div class="fl-pager">
         <hrs:pagerNavBar position="top" showSummary="${true}" />
